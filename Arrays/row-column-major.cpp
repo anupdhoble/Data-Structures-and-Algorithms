@@ -2,6 +2,7 @@
 using namespace std;
 const int n=2;//row
 const int m=3;//column
+//Just one query .... suggest me how to ask user for n and m and update values of n and m in terminal itself
 void display(int a[n][m]){
     cout<<"Resultant Array:\n";
     for(int i=0;i<n;i++){
