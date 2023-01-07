@@ -16,20 +16,7 @@ struct node* createNode(int data){
     return n;
 }
 
-void printPreorder(struct node* root){
-    if(root!=NULL){
-        cout<<root->data;
-        printPreorder(root->left);
-        printPreorder(root->right);
-    }
-}
-void printPostorder(struct node* root){
-    if(root!=NULL){
-        printPostorder(root->left);
-        printPostorder(root->right);
-        cout<<root->data;
-    }
-}
+
 void printInorder(struct node* root){
     if(root!=NULL){
         printInorder(root->left);
