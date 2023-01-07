@@ -37,22 +37,38 @@ void printInorder(struct node* root){
         printInorder(root->right);
     }
 }
+int isBST(struct node* root){
+    static struct node *prev=NULL;
+    if(root!=NULL){
+        if(!isBST(root->left)){
+            return 0;
+        }
+        if(prev!=NULL&&root->data<=prev->data){
+            return 0;
+        }
+        prev=root;
+        return isBST(root->right);
+    }
+    else{
+        return 1;
+    }
+}
 int main()
 {
     cout<<"By Anup Dhoble..."<<'\a';
      
-   struct node* p=createNode(5);
+   struct node* p=createNode(6);
    struct node* p1=createNode(3);
-   struct node* p3=createNode(0);
+   struct node* p3=createNode(1);
    struct node* p4=createNode(4);
-   struct node* p2=createNode(6);
+   struct node* p2=createNode(8);
 
      // Finally The BST tree looks like this:
-    //      5
+    //      6
     //     / \
-    //    3   6
+    //    3   8
     //   / \
-    //  0   4 
+    //  1   4 
     p->left=p1;
     p->right=p2;
     p1->left=p3;
@@ -61,6 +77,11 @@ int main()
     cout<<"\nInorder: ";
     printInorder(p);
     //If Inorder is in ascending order then BT is BST.
-
+    if(isBST(p)){
+        cout<<"\nIt is a Binary Search Tree..";
+    }
+    else{
+        cout<<"\nIt is not a Binary Search Tree..";
+    }
     return 0;
 }
