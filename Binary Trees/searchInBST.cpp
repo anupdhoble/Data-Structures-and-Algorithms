@@ -53,15 +53,28 @@ int isBST(struct node* root){
         return 1;
     }
 }
-struct node* search(struct node* root,int key){
+struct node* searchRec(struct node* root,int key){
     if(root==NULL)
         return NULL;
     if(root->data>key)
-        return search(root->left,key);
+        return searchRec(root->left,key);
     else if(root->data==key)
             return root;
         else
-            return search(root->right,key);
+            return searchRec(root->right,key);
+}
+//Iterative Solution
+struct node* searchItr(struct node* root,int key){
+    while(root!=NULL){
+        if(key==root->data)
+            return root;
+        else if(key<root->data)
+            root=root->left;
+        else{
+            root=root->left;
+        }
+    }
+    return NULL;
 }
 int main()
 {
@@ -96,11 +109,17 @@ int main()
     int key;
     cout<<"\nEnter key to be searched: ";
     cin>>key;
-    struct node* n=search(p,key);
-    if(n!=NULL)
-        cout<<"\n"<<n->data<<" is found at address :"<<n;
+    cout<<"\nRecursive:";
+    struct node* n1=searchRec(p,key);
+    if(n1!=NULL)
+        cout<<"\n"<<n1->data<<" is found at address :"<<n1;
     else
         cout<<"\nElement not found..\n";
-
+    cout<<"\nIterative:";
+    struct node* n2=searchRec(p,key);
+    if(n2!=NULL)
+        cout<<"\n"<<n2->data<<" is found at address :"<<n2;
+    else
+        cout<<"\nElement not found..\n";
     return 0;
 }
