@@ -78,6 +78,37 @@ void insert_bst(struct node *root, int key)
         prev->right = n;
     }
 }
+struct node* inorderPredecessor(struct node* root){
+    root=root->left;
+    while(root->right!=NULL){
+        root=root->right;
+    }
+    return root;
+}
+struct node* delete_bst(struct node * root,int key){
+    struct node* ipre;
+    if(root==NULL){//base condition
+        return NULL;
+    }
+    if(root->left==NULL&&root->right==NULL){ //i.e. it is a leaf node
+        //base condition
+        free(root);
+        return NULL;
+    }
+    //search for node to be deleted
+    if(key<root->data){
+        root->left=delete_bst(root->left,key);
+    }
+    else if(key>root->data){
+        root->right=delete_bst(root->right,key);
+    }
+    else{//key node found if key==root->data
+        ipre=inorderPredecessor(root);
+        root->data=ipre->data;
+        root->left=delete_bst(root->left,ipre->data);
+    }
+    return root;
+}
 int main()
 {
     cout << "By Anup Dhoble..." << '\a';
@@ -118,12 +149,14 @@ int main()
     {
         cout << "\nIt is not a Binary Search Tree..";
     }
-    // int key;
-    // cout<<"\nEnter key to be inserted: ";
-    // cin>>key;
+    
     insert_bst(p, 2);
-    cout << "\n"
-         << p->left->left->right->data;
+    cout << "\n"<< p->left->left->right->data<<"\n";
+    printInorder(p);
+    delete_bst(p,2);
+    cout<<endl;
+    printInorder(p);
+    
 
     return 0;
 }
