@@ -67,7 +67,7 @@ int main(){
     }
     return 0;
 }
-output:-
+//output:-
 // //Element: 9
 // Element: 8
 // Element: 6
