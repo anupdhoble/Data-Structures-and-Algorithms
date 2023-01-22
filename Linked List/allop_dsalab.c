@@ -69,7 +69,7 @@ void insert_end(int ele)
 void display()
 {
     struct node *temp = head;
-    printf("\n Linked list: ");
+    printf("\nLinked list: ");
     while (temp != NULL)
     {
         printf("%d ", temp->data);
@@ -118,7 +118,7 @@ int delete_beg(){
 }
 int delete_end(){
     int a;
-    if(head==NULL) {printf("\nLinked list empty : Operation aborted");return;}
+    if(head==NULL) {printf("\nLinked list empty : Operation aborted wrong answer generated"); return -999;}
     else if(head->next==NULL){
         a=head->data;
         free(head);
@@ -135,6 +135,32 @@ int delete_end(){
             return a;
     }
 }
+int delete_pos(int pos){
+    int l=lengthll();
+    if(pos<1||pos>l){
+        printf("\nOperation Aborted: Enter pos range that is available (1 - %d)",l);
+        return -999;
+    }
+    else if(pos==1){
+        return delete_beg();
+    }
+    else if(pos==l){
+        return delete_end();
+    }
+    else{
+        int k=pos-2;
+        struct node * temp= head;
+        while(k--){
+            temp=temp->next;
+        }
+        int a=temp->next->data;
+        struct node*temp1=temp->next;
+        temp->next=temp->next->next;
+        free(temp1);
+        return a;
+    }
+    
+}
 int main()
 {
 
@@ -142,7 +168,7 @@ int main()
     struct node *n = NULL;
     while (1)
     {
-        printf("\nMenu:-\n1. Create ll\n2. Insert at beginning\n3. Insert at end  \n4. Insert at position\n5. Delete from beginning\n6. Delete from end\n7.  Display\n8. Exit\n");
+        printf("\nMenu:-\n1. Create ll\n2. Insert at beginning\n3. Insert at end  \n4. Insert at position\n5. Delete from beginning\n6. Delete from end\n7. Delete from a position\n8. Calculate length \n9. Display\n10. Exit\n");
         scanf("%d", &c);
         switch (c)
         {
@@ -181,9 +207,20 @@ int main()
             display();
             break;
         case 7:
+            printf("\nEnter position number: ");
+            scanf("%d",&pos);
+            a=delete_pos(pos);
+            printf("\nDeleted number: %d",a);
             display();
             break;
         case 8:
+            printf("\nLength of Linked list is: %d",lengthll());
+            break;
+        case 9:
+            display();
+            break;
+        case 10:
+            printf("\nMission Abort ...Exiting........");
             exit(0);
         default:
             printf("\nInvalid entry:");
