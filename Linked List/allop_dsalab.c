@@ -116,6 +116,25 @@ int delete_beg(){
     }
     return a;
 }
+int delete_end(){
+    int a;
+    if(head==NULL) {printf("\nLinked list empty : Operation aborted");return;}
+    else if(head->next==NULL){
+        a=head->data;
+        free(head);
+        return a;
+    }
+    else{
+        struct node* temp=head;
+        while(temp->next->next!= NULL){
+            temp=temp->next;
+        }
+            a=temp->next->data;
+            free(temp->next);
+            temp->next=NULL;
+            return a;
+    }
+}
 int main()
 {
 
@@ -123,7 +142,7 @@ int main()
     struct node *n = NULL;
     while (1)
     {
-        printf("\nMenu:-\n1. Create ll\n2. Insert at beginning\n3. Insert at end  \n4. Insert at position\n5. Delete from beginning\n6. Display\n7. Exit\n");
+        printf("\nMenu:-\n1. Create ll\n2. Insert at beginning\n3. Insert at end  \n4. Insert at position\n5. Delete from beginning\n6. Delete from end\n7.  Display\n8. Exit\n");
         scanf("%d", &c);
         switch (c)
         {
@@ -149,15 +168,22 @@ int main()
             printf("\nEnter postion at which to be inserted: ");
             scanf("%d", &pos);
             insert_pos(pos, e);
+            display();
             break;
         case 5:
             a = delete_beg();
             printf("\nDeleted node data: %d",a);
+            display();
             break;
         case 6:
+            a=delete_end();
+            printf("\nDeleted node data: %d",a);
             display();
             break;
         case 7:
+            display();
+            break;
+        case 8:
             exit(0);
         default:
             printf("\nInvalid entry:");
