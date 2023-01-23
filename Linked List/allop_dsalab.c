@@ -44,7 +44,7 @@ void createll()
     while (n--)
     {
         int d;
-        printf("\nEnter data: ");
+        printf("Enter data: ");
         scanf("%d", &data);
         insert_beg(data);
     }
