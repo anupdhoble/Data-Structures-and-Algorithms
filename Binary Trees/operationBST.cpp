@@ -109,6 +109,14 @@ struct node* delete_bst(struct node * root,int key){
     }
     return root;
 }
+int height(struct node* root){
+    if(root==NULL) return 0;
+    else{
+        int leftheight=height(root->left);
+        int rightheight=height(root->right);
+        return max(leftheight,rightheight)+1;
+    }
+}
 int main()
 {
     cout << "By Anup Dhoble..." << '\a';
@@ -153,10 +161,11 @@ int main()
     insert_bst(p, 2);
     cout << "\n"<< p->left->left->right->data<<"\n";
     printInorder(p);
+    cout<<"\nHeight of tree: "<<height(p);
     delete_bst(p,2);
     cout<<endl;
     printInorder(p);
-    
+    cout<<"\nHeight of tree: "<<height(p);
 
     return 0;
 }
