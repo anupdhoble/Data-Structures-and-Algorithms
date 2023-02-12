@@ -16,20 +16,6 @@ struct node* createNode(int data){
     return n;
 }
 
-void printPreorder(struct node* root){
-    if(root!=NULL){
-        cout<<root->data;
-        printPreorder(root->left);
-        printPreorder(root->right);
-    }
-}
-void printPostorder(struct node* root){
-    if(root!=NULL){
-        printPostorder(root->left);
-        printPostorder(root->right);
-        cout<<root->data;
-    }
-}
 
 void printInorder(struct node* root){
     if(root!=NULL){
@@ -60,15 +46,6 @@ int main()
     p1->left=p3;
     p1->right=p4;
     
-    // cout<<"\nIterative Inorder: ";
-    // inorder_iterative(p);
-    // cout<<"\nPreorder Iterative: ";
-    // preorder_iterative(p);
-    cout<<"\nPost order recursion: ";
-    printPostorder(p);
-    cout<<"\nPre order recursion: ";
-    printPreorder(p);
-    cout<<"\nInorder recursion: ";
-    printInorder(p);
+    make_mirror(root);
     return 0;
 }
