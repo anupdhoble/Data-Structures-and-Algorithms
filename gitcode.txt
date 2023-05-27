@@ -1,0 +1,5 @@
+git add . : to add all to your git
+git status :check status of repo
+git commit -m "Type_message_here" : commit this repo
+git push origin new-branch-name : push the given branch 
+git checkout new-branch-name :Switch to the new branch
