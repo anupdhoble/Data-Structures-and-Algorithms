@@ -38,7 +38,7 @@ void bind_parent(struct node* root){
 
 }
 
-void print_from_target(struct node* root,queue<struct node*> bfs,int k){
+void print_from_target(struct node* root,queue<struct node*> bfs){
     int n=0;
     bfs.push(root);
     visited[root]=true;
@@ -46,7 +46,7 @@ void print_from_target(struct node* root,queue<struct node*> bfs,int k){
     while(!bfs.empty()){
         
         int size=bfs.size();
-        if(n++==k) break;
+        n++;
         for(int i=0;i<size;i++){
             struct node* top=bfs.front();bfs.pop();
             if(m[top]&&!visited[m[top]]){
@@ -66,11 +66,7 @@ void print_from_target(struct node* root,queue<struct node*> bfs,int k){
         }
         
     }
-    while (!bfs.empty()) {
-                    cout << bfs.front()->data << " ";
-                    bfs.pop();
-                }
-                cout << endl;
+    cout<<n;
 }
 
 int main()
@@ -99,6 +95,6 @@ int main()
 
     bind_parent(p);
     queue<struct node*>bfs;
-    print_from_target(p1,bfs,1);
+    print_from_target(p1,bfs);
     return 0;
 }
