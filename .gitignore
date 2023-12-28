@@ -1,0 +1,5 @@
+# Remove all exe files
+*.exe
+
+# Ignore Visual Studio Code settings directory
+.vscode/
