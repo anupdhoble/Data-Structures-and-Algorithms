@@ -1,6 +1,6 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define INF 1e8
+#define INF INT_MAX
 
 
 vector<int> bellmanFord(int V,vector<vector<int>>&edges,int S){
